@@ -1,6 +1,6 @@
 // Garde l’appli en mémoire pour qu’elle marche sans connexion.
 // Change le numéro de version à chaque mise à jour des fichiers.
-const VERSION = "anglais-v1";
+const VERSION = "anglais-v2";
 const FILES = ["./", "./index.html", "./manifest.webmanifest",
   "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 

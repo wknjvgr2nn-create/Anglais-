@@ -149,14 +149,67 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:700}
 .qinputs input.ko{border-color:var(--bad)}
 .qfb{min-height:1.5em;margin-top:12px;font-size:.95rem}
 .qfoot{margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+
+/* Titre */
+header.hero{padding:28px 0 12px}
+.hero h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:2rem;line-height:1.1;margin:0;color:var(--accent)}
+.label{font-size:.85rem;color:var(--muted);margin:0 0 6px}
+.btn.big{width:100%;padding:13px;font-size:1.05rem;border-radius:14px;margin-top:4px}
+.btn:disabled{opacity:.5;cursor:default}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:2px 0 16px}
+.stats.four{grid-template-columns:repeat(4,1fr)}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center}
+.stat b{display:block;font-family:"Fraunces",Georgia,serif;font-size:1.4rem;line-height:1.2}
+.stat span{font-size:.78rem;color:var(--muted);line-height:1.2;display:block}
+.stat.learn b{color:var(--pop)} .stat.rev b{color:var(--accent)} .stat.done b{color:var(--good)}
+.vitem .st{font-size:.8rem;color:var(--muted)}
+
+/* Plein écran */
+body.lock{overflow:hidden}
+.overlay{position:fixed;inset:0;z-index:50;background:var(--paper);display:flex;flex-direction:column;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) 16px calc(env(safe-area-inset-bottom,0px) + 14px)}
+.overlay[hidden]{display:none}
+.ovtop{display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:560px;width:100%;margin:0 auto 12px}
+.close{background:var(--surface);border:1px solid var(--line);width:40px;height:40px;border-radius:50%;font-size:1.05rem;flex:0 0 40px}
+.ovtitle{color:var(--muted);font-size:.95rem;text-align:center;flex:1}
+.stack{flex:1;position:relative;max-width:560px;width:100%;margin:0 auto;display:flex;min-height:0}
+.scard{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px 20px;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;gap:12px;touch-action:none;user-select:none;-webkit-user-select:none;position:relative;cursor:grab;overflow:hidden}
+.scard .badge{position:absolute;bottom:14px;left:0;right:0;font-size:.82rem;color:var(--muted)}
+.scard .front{font-size:1.7rem;font-weight:700;line-height:1.3;margin:0}
+.scard .front.en{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:2.1rem}
+.scard .row{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+.scard .back{display:none;border-top:1px dashed var(--line);padding-top:16px;width:100%}
+.scard.shown .back{display:block}
+.scard .ans{font-size:1.4rem;font-weight:700;margin:0}
+.scard .ans.en{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:1.8rem;color:var(--accent)}
+.scard .ex{color:var(--muted);font-size:.98rem;margin-top:10px}
+.scard .tap{color:var(--muted);font-size:.88rem}
+.scard.shown .tap{display:none}
+.stamp{position:absolute;top:18px;padding:4px 12px;border:3px solid;border-radius:10px;font-weight:700;font-size:1.15rem;opacity:0;pointer-events:none}
+.stamp.yes{right:16px;color:var(--good);transform:rotate(8deg)}
+.stamp.no{left:16px;color:var(--bad);transform:rotate(-8deg)}
+.swbtns{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;max-width:560px;width:100%;margin:14px auto 0}
+.sw{border:2px solid var(--line);border-radius:14px;padding:13px 10px;font-weight:700;background:var(--surface);font-size:1rem}
+.sw.no{color:var(--bad);border-color:var(--bad)}
+.sw.yes{color:var(--good);border-color:var(--good)}
+.endbox{margin:auto;text-align:center;display:grid;gap:12px;justify-items:center}
+.endbox h3{font-family:"Fraunces",Georgia,serif;font-size:1.6rem;margin:0}
+#quizOv .qcard{flex:1;max-width:560px;width:100%;margin:0 auto;overflow-y:auto;display:flex;flex-direction:column}
+#quizOv .qfoot{margin-top:auto;padding-top:14px}
+
+/* Mes mots */
+.mgroup{margin-top:20px}
+.mgroup h3{font-size:1.05rem;margin:0 0 8px}
+.mgroup .vitem .d{font-size:.8rem;color:var(--muted)}
+.empty{color:var(--muted);font-size:.95rem;margin:0}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="hero">
-    <p class="big">Practice makes perfect.</p>
-    <p class="sub">« C’est en forgeant qu’on devient forgeron. » Vocabulaire, grammaire et conjugaison, avec le son.</p>
+    <h1>Apprendre l’anglais</h1>
   </header>
 
   <nav class="tabs" aria-label="Sections">
@@ -165,27 +218,30 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:700}
     <a href="#conjugaison">Conjugaison</a>
     <a href="#irreguliers">Irréguliers</a>
     <a href="#quiz">Quiz</a>
+    <a href="#mots">Mes mots</a>
   </nav>
   <p class="notice" id="voiceNotice">Aucune voix anglaise trouvée sur cet appareil : le son risque de ne pas marcher. Sur iPhone : Réglages › Accessibilité › Contenu énoncé › Voix › Anglais.</p>
 
   <!-- VOCABULAIRE -->
   <section class="view" id="v-vocabulaire">
     <h2>Vocabulaire</h2>
-    <p class="lead">Choisis un thème, essaie de trouver le mot dans ta tête, puis retourne la carte. « À revoir » garde le mot de côté pour le retravailler.</p>
+    <p class="label">Thème</p>
     <div class="chips" id="themeChips" role="group" aria-label="Thème"></div>
+    <p class="label">Sens</p>
     <div class="chips" id="dirChips" role="group" aria-label="Sens">
       <button data-dir="fr" aria-pressed="true">Français → anglais</button>
       <button data-dir="en" aria-pressed="false">Anglais → français</button>
-      <button data-only="review" aria-pressed="false">Seulement « à revoir »</button>
     </div>
-    <div class="card" id="vcard"></div>
-    <div class="cardnav">
-      <button class="btn" id="vPrev">Précédent</button>
-      <span class="count" id="vCount"></span>
-      <button class="btn solid" id="vNext">Suivant</button>
+    <p class="label">Nouveaux mots par séance</p>
+    <div class="chips" id="newChips" role="group" aria-label="Nouveaux mots par séance">
+      <button data-n="5" aria-pressed="false">5</button>
+      <button data-n="10" aria-pressed="true">10</button>
+      <button data-n="20" aria-pressed="false">20</button>
     </div>
+    <div class="stats" id="sessInfo"></div>
+    <button class="btn solid big" id="startCards">Commencer la séance</button>
     <details class="more">
-      <summary>Voir toute la liste du thème</summary>
+      <summary>Voir toute la liste</summary>
       <div class="vlist" id="vlist"></div>
     </details>
   </section>
@@ -193,14 +249,13 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:700}
   <!-- GRAMMAIRE -->
   <section class="view" id="v-grammaire">
     <h2>Grammaire</h2>
-    <p class="lead">Les points qui posent le plus de problèmes aux francophones. Touche un titre pour l’ouvrir, et le bouton ▶ pour écouter les exemples.</p>
     <div class="gram" id="gram"></div>
   </section>
 
   <!-- CONJUGAISON -->
   <section class="view" id="v-conjugaison">
     <h2>Conjugaison</h2>
-    <p class="lead">Choisis un verbe et un temps. En anglais, la conjugaison change très peu : seul « he / she / it » prend un -s au présent, et tout le reste se fait avec des auxiliaires.</p>
+    <p class="lead">En anglais, la conjugaison change très peu : seul « he / she / it » prend un -s au présent, et tout le reste se fait avec des auxiliaires.</p>
     <div class="conjctl">
       <select id="verbSel" aria-label="Verbe"></select>
     </div>
@@ -233,21 +288,52 @@ details.more summary{cursor:pointer;color:var(--accent);font-weight:700}
   <!-- QUIZ -->
   <section class="view" id="v-quiz">
     <h2>Quiz</h2>
-    <p class="lead">Trois façons de te tester. Le score repart à zéro quand tu changes de mode.</p>
+    <p class="label">Mode</p>
     <div class="chips" id="quizChips" role="group" aria-label="Mode du quiz">
       <button data-q="vocab" aria-pressed="true">Vocabulaire</button>
       <button data-q="irr" aria-pressed="false">Irréguliers</button>
       <button data-q="gram" aria-pressed="false">Grammaire</button>
     </div>
-    <div class="qcard">
-      <div id="qBody"></div>
-      <div class="qfb" id="qFb" aria-live="polite"></div>
-      <div class="qfoot">
-        <span class="count" id="qScore">0 / 0</span>
-        <button class="btn solid" id="qNext">Question suivante</button>
-      </div>
-    </div>
+    <button class="btn solid big" id="startQuiz">Commencer le quiz</button>
   </section>
+
+  <!-- MES MOTS -->
+  <section class="view" id="v-mots">
+    <h2>Mes mots</h2>
+    <div class="stats four" id="motsStats"></div>
+    <div id="motsLists"></div>
+    <p class="count" style="margin-top:22px">Un mot à revoir revient au moins 10 fois avant de passer en révision. Un mot acquis revient 13 fois sur environ 3 mois, de plus en plus espacé. S’il est oublié pendant une révision, il repart dans « à revoir ».</p>
+    <button class="btn" id="resetAll">Tout remettre à zéro</button>
+  </section>
+</div>
+
+<!-- CARTES EN PLEIN ÉCRAN -->
+<div class="overlay" id="cardOv" hidden role="dialog" aria-label="Séance de vocabulaire">
+  <div class="ovtop">
+    <button class="close" id="cardClose" aria-label="Fermer">✕</button>
+    <span class="ovtitle" id="cardProg"></span>
+    <span style="width:40px"></span>
+  </div>
+  <div class="stack" id="stack"></div>
+  <div class="swbtns" id="swbtns">
+    <button class="sw no" id="swNo">← À revoir</button>
+    <button class="sw" id="swFlip">Retourner</button>
+    <button class="sw yes" id="swYes">Acquis →</button>
+  </div>
+</div>
+
+<!-- QUIZ EN PLEIN ÉCRAN -->
+<div class="overlay" id="quizOv" hidden role="dialog" aria-label="Quiz">
+  <div class="ovtop">
+    <button class="close" id="quizClose" aria-label="Fermer">✕</button>
+    <span class="ovtitle" id="quizTitle"></span>
+    <span class="count" id="qScore">0 / 0</span>
+  </div>
+  <div class="qcard">
+    <div id="qBody"></div>
+    <div class="qfb" id="qFb" aria-live="polite"></div>
+    <div class="qfoot"><button class="btn solid big" id="qNext">Question suivante</button></div>
+  </div>
 </div>
 
 <script>
@@ -462,50 +548,167 @@ const playBtn=(txt,label)=>`<button class="play" data-say="${esc(txt)}" aria-lab
 document.addEventListener("click",e=>{const t=e.target.closest("[data-say]");if(t)say(t.dataset.say);});
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 
-// mémoire « à revoir » (sur cet appareil)
-let review=new Set();
-try{review=new Set(JSON.parse(localStorage.getItem("en-review")||"[]"));}catch(e){}
-function saveReview(){try{localStorage.setItem("en-review",JSON.stringify([...review]));}catch(e){}}
+// ================= RÉPÉTITION ESPACÉE =================
+// À revoir : le mot revient au moins 10 fois (4 fois max par séance) avant de passer en révision.
+// Acquis : 13 révisions sur environ 3 mois (écarts en jours ci-dessous). Oublié en révision → retour dans « à revoir ».
+const DAY=86400000, LEARN_TARGET=10, MAX_PER_SESSION=4;
+const INTERVALS=[1,1,2,3,4,5,6,8,10,12,14,14,10];
+const today0=()=>{const d=new Date();d.setHours(0,0,0,0);return d.getTime();};
+let srs={};
+try{srs=JSON.parse(localStorage.getItem("en-srs")||"{}")||{};}catch(e){srs={};}
+try{const old=JSON.parse(localStorage.getItem("en-review")||"[]");old.forEach(w=>{if(!srs[w])srs[w]={st:"learn",v:0};});localStorage.removeItem("en-review");}catch(e){}
+function saveSrs(){try{localStorage.setItem("en-srs",JSON.stringify(srs));}catch(e){}}
+const WORDS=[];
+{const seen=new Set();THEMES.forEach((t,ti)=>t.items.forEach(it=>{if(!seen.has(it[0])){seen.add(it[0]);WORDS.push({en:it[0],fr:it[1],ex:it[2],t:ti});}}));}
+const stOf=w=>srs[w]?srs[w].st:"new";
+const isDue=w=>{const s=srs[w];return !!s&&s.st==="rev"&&s.due<=today0();};
+const fmtDate=t=>t<=today0()?"aujourd’hui":new Date(t).toLocaleDateString("fr-FR",{day:"numeric",month:"short"});
+function statusText(w){
+  const s=srs[w];
+  if(!s)return "Nouveau mot";
+  if(s.st==="learn")return `À revoir · ${Math.min(s.v,LEARN_TARGET)}/${LEARN_TARGET} passages`;
+  if(s.st==="rev")return `Acquis · révision ${s.s+1}/${INTERVALS.length}`;
+  return "Maîtrisé";
+}
+function record(w,ok){
+  const s=srs[w], due0=()=>today0()+INTERVALS[0]*DAY;
+  if(!s){srs[w]=ok?{st:"rev",s:0,due:due0()}:{st:"learn",v:1};}
+  else if(s.st==="learn"){s.v++;if(ok&&s.v>=LEARN_TARGET)srs[w]={st:"rev",s:0,due:due0()};}
+  else if(s.st==="rev"){
+    if(ok){s.s++;if(s.s>=INTERVALS.length){srs[w]={st:"done"};}else s.due=today0()+INTERVALS[s.s]*DAY;}
+    else srs[w]={st:"learn",v:0};
+  }else if(s.st==="done"&&!ok){srs[w]={st:"learn",v:0};}
+  saveSrs();
+}
 
 // ================= VOCABULAIRE =================
-let theme=0, dir="fr", onlyReview=false, deck=[], pos=0;
+let theme=-1, dir="fr", newPer=10;
 const themeChips=document.getElementById("themeChips");
-THEMES.forEach((t,i)=>{
-  const b=document.createElement("button");b.textContent=t.name;b.setAttribute("aria-pressed",i===0?"true":"false");
-  b.onclick=()=>{theme=i;themeChips.querySelectorAll("button").forEach((x,k)=>x.setAttribute("aria-pressed",k===i?"true":"false"));buildDeck();};
+["Tous les thèmes",...THEMES.map(t=>t.name)].forEach((name,k)=>{
+  const i=k-1,b=document.createElement("button");b.textContent=name;b.setAttribute("aria-pressed",i===-1?"true":"false");
+  b.onclick=()=>{theme=i;themeChips.querySelectorAll("button").forEach((x,j)=>x.setAttribute("aria-pressed",j===k?"true":"false"));updateVocab();};
   themeChips.appendChild(b);
 });
-document.querySelectorAll("#dirChips button").forEach(b=>b.onclick=()=>{
-  if(b.dataset.dir){dir=b.dataset.dir;document.querySelectorAll("#dirChips [data-dir]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));renderCard();}
-  else{onlyReview=!onlyReview;b.setAttribute("aria-pressed",onlyReview?"true":"false");buildDeck();}
+document.querySelectorAll("#dirChips button").forEach(b=>b.onclick=()=>{dir=b.dataset.dir;document.querySelectorAll("#dirChips button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));});
+document.querySelectorAll("#newChips button").forEach(b=>b.onclick=()=>{newPer=+b.dataset.n;document.querySelectorAll("#newChips button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));updateVocab();});
+const pool=()=>theme<0?WORDS:WORDS.filter(w=>w.t===theme);
+const statBox=(n,label,cls)=>`<div class="stat ${cls||""}"><b>${n}</b><span>${label}</span></div>`;
+function updateVocab(){
+  const p=pool();
+  const due=p.filter(w=>isDue(w.en)).length, learn=p.filter(w=>stOf(w.en)==="learn").length, nw=p.filter(w=>stOf(w.en)==="new").length;
+  document.getElementById("sessInfo").innerHTML=statBox(due,"à réviser aujourd’hui","rev")+statBox(learn,"à revoir","learn")+statBox(nw,"nouveaux");
+  const total=due+learn+Math.min(nw,newPer), btn=document.getElementById("startCards");
+  btn.disabled=!total;btn.textContent=total?`Commencer la séance (${total} mots)`:"Rien à réviser pour l’instant";
+  document.getElementById("vlist").innerHTML=p.map(w=>
+    `<div class="vitem">${playBtn(w.en)}<div><div class="e">${esc(w.en)}</div><div class="f">${esc(w.fr)}</div><div class="st">${esc(statusText(w.en))}</div></div></div>`).join("");
+}
+
+// --- Séance en plein écran ---
+let queue=[],qi=0,shown={},nOk=0,nKo=0,busy=false;
+const cardOv=document.getElementById("cardOv"),stack=document.getElementById("stack"),swbtns=document.getElementById("swbtns");
+function openOv(el){el.hidden=false;document.body.classList.add("lock");}
+function closeOv(el){el.hidden=true;document.body.classList.remove("lock");}
+document.getElementById("startCards").onclick=()=>{
+  const p=pool();
+  const due=p.filter(w=>isDue(w.en)),learn=p.filter(w=>stOf(w.en)==="learn"),nw=shuffle(p.filter(w=>stOf(w.en)==="new")).slice(0,newPer);
+  queue=shuffle([...due,...learn,...nw]);qi=0;shown={};nOk=0;nKo=0;
+  openOv(cardOv);renderSCard();
+};
+document.getElementById("cardClose").onclick=()=>{closeOv(cardOv);updateVocab();};
+function renderSCard(){
+  busy=false;
+  if(qi>=queue.length){
+    swbtns.style.visibility="hidden";
+    document.getElementById("cardProg").textContent="";
+    stack.innerHTML=`<div class="endbox"><h3>Séance terminée</h3><p>${nOk} acquis · ${nKo} à revoir</p><button class="btn solid" id="endClose">Fermer</button></div>`;
+    document.getElementById("endClose").onclick=()=>{closeOv(cardOv);updateVocab();};
+    return;
+  }
+  swbtns.style.visibility="visible";
+  const w=queue[qi];shown[w.en]=(shown[w.en]||0)+1;
+  const left=queue.length-qi;
+  document.getElementById("cardProg").textContent=`${left} carte${left>1?"s":""} restante${left>1?"s":""}`;
+  const front=dir==="fr"?`<p class="front">${esc(w.fr)}</p>`:`<div class="row"><p class="front en">${esc(w.en)}</p>${playBtn(w.en)}</div>`;
+  const back=dir==="fr"?`<div class="row"><p class="ans en">${esc(w.en)}</p>${playBtn(w.en)}</div>`:`<p class="ans">${esc(w.fr)}</p>`;
+  stack.innerHTML=`<div class="scard" id="scard">
+    <span class="stamp yes">Acquis</span><span class="stamp no">À revoir</span>
+    ${front}<p class="tap">Touche pour retourner, glisse pour répondre</p>
+    <div class="back">${back}${w.ex?`<div class="row ex"><span class="en">${esc(w.ex)}</span>${playBtn(w.ex,"l’exemple")}</div>`:""}</div>
+    <span class="badge">${esc(statusText(w.en))}</span></div>`;
+  attachSwipe(document.getElementById("scard"));
+  if(dir==="en")say(w.en);
+}
+function flipCard(){
+  const c=document.getElementById("scard");if(!c)return;
+  c.classList.toggle("shown");
+  if(c.classList.contains("shown")&&dir==="fr")say(queue[qi].en);
+}
+function answer(ok){
+  const w=queue[qi];record(w.en,ok);ok?nOk++:nKo++;
+  if(stOf(w.en)==="learn"&&shown[w.en]<MAX_PER_SESSION){
+    const pos=Math.min(qi+4+Math.floor(Math.random()*3),queue.length);queue.splice(pos,0,w);
+  }
+  qi++;renderSCard();
+}
+function fly(ok){
+  const c=document.getElementById("scard");if(!c||busy)return;busy=true;
+  c.style.transition="transform .28s ease-out, opacity .28s";
+  c.style.transform=`translateX(${ok?130:-130}vw) rotate(${ok?18:-18}deg)`;
+  c.querySelector(ok?".stamp.yes":".stamp.no").style.opacity=1;
+  setTimeout(()=>answer(ok),260);
+}
+function attachSwipe(el){
+  let x0=null,y0=0,dx=0,moved=false;
+  const yes=el.querySelector(".stamp.yes"),no=el.querySelector(".stamp.no");
+  el.addEventListener("pointerdown",e=>{
+    if(e.target.closest("button")||busy)return;
+    x0=e.clientX;y0=e.clientY;dx=0;moved=false;el.style.transition="none";
+    try{el.setPointerCapture(e.pointerId);}catch(_){}
+  });
+  el.addEventListener("pointermove",e=>{
+    if(x0===null)return;dx=e.clientX-x0;
+    if(Math.abs(dx)>8||Math.abs(e.clientY-y0)>8)moved=true;
+    el.style.transform=`translateX(${dx}px) rotate(${dx/22}deg)`;
+    yes.style.opacity=Math.max(0,Math.min(1,dx/90));no.style.opacity=Math.max(0,Math.min(1,-dx/90));
+  });
+  const end=()=>{
+    if(x0===null)return;x0=null;
+    if(dx>90)return fly(true);
+    if(dx<-90)return fly(false);
+    el.style.transition="transform .2s";el.style.transform="";yes.style.opacity=0;no.style.opacity=0;
+    if(!moved)flipCard();
+  };
+  el.addEventListener("pointerup",end);
+  el.addEventListener("pointercancel",()=>{x0=null;el.style.transform="";yes.style.opacity=0;no.style.opacity=0;});
+}
+document.getElementById("swYes").onclick=()=>fly(true);
+document.getElementById("swNo").onclick=()=>fly(false);
+document.getElementById("swFlip").onclick=flipCard;
+document.addEventListener("keydown",e=>{
+  if(cardOv.hidden)return;
+  if(e.key==="ArrowRight")fly(true);else if(e.key==="ArrowLeft")fly(false);
+  else if(e.key===" "){e.preventDefault();flipCard();}else if(e.key==="Escape"){closeOv(cardOv);updateVocab();}
 });
-function buildDeck(){
-  const items=THEMES[theme].items.map(it=>it);
-  deck=onlyReview?items.filter(it=>review.has(it[0])):shuffle(items.slice());
-  pos=0;renderCard();renderList();
+updateVocab();
+
+// ================= MES MOTS =================
+function renderMots(){
+  const g={learn:[],rev:[],done:[]};let unseen=0;
+  WORDS.forEach(w=>{const s=stOf(w.en);if(s==="new")unseen++;else g[s].push(w);});
+  g.rev.sort((a,b)=>srs[a.en].due-srs[b.en].due);
+  g.learn.sort((a,b)=>srs[b.en].v-srs[a.en].v);
+  document.getElementById("motsStats").innerHTML=statBox(g.learn.length,"à revoir","learn")+statBox(g.rev.length,"acquis","rev")+statBox(g.done.length,"maîtrisés","done")+statBox(unseen,"pas encore vus");
+  const item=(w,d)=>`<div class="vitem">${playBtn(w.en)}<div><div class="e">${esc(w.en)}</div><div class="f">${esc(w.fr)}</div><div class="d">${d}</div></div></div>`;
+  const grp=(title,list,fn,empty)=>`<div class="mgroup"><h3>${title} (${list.length})</h3>${list.length?`<div class="vlist" style="margin:0">${list.map(w=>item(w,fn(w))).join("")}</div>`:`<p class="empty">${empty}</p>`}</div>`;
+  document.getElementById("motsLists").innerHTML=
+    grp("À revoir",g.learn,w=>`${Math.min(srs[w.en].v,LEARN_TARGET)}/${LEARN_TARGET} passages`,"Aucun mot à revoir.")+
+    grp("Acquis",g.rev,w=>`Révision ${srs[w.en].s+1}/${INTERVALS.length} · prochaine : ${fmtDate(srs[w.en].due)}`,"Glisse une carte vers la droite pour qu’elle arrive ici.")+
+    grp("Maîtrisés",g.done,()=>"Révisé 13 fois","Pas encore de mot maîtrisé.");
 }
-function renderCard(){
-  const c=document.getElementById("vcard");
-  if(!deck.length){c.className="card";c.innerHTML=`<p class="front">Aucun mot « à revoir » dans ce thème.</p><p class="count">Désactive le filtre pour voir tous les mots.</p>`;document.getElementById("vCount").textContent="";return;}
-  const [en,fr,ex]=deck[pos], rev=review.has(en);
-  const front=dir==="fr"?`<p class="front">${esc(fr)}</p>`:`<div class="row"><p class="front en">${esc(en)}</p>${playBtn(en)}</div>`;
-  const back=dir==="fr"?`<div class="row"><p class="ans en">${esc(en)}</p>${playBtn(en)}</div>`:`<p class="ans">${esc(fr)}</p>`;
-  c.className="card";
-  c.innerHTML=`${front}
-    <div class="back">${back}${ex?`<div class="row ex"><span class="en">${esc(ex)}</span>${playBtn(ex,"l’exemple")}</div>`:""}</div>
-    <div class="row"><button class="btn" id="vFlip">Retourner la carte</button>
-    <button class="btn small" id="vRev" aria-pressed="${rev}">${rev?"Retirer de « à revoir »":"À revoir"}</button></div>`;
-  document.getElementById("vFlip").onclick=()=>{c.classList.toggle("shown");if(c.classList.contains("shown")&&dir==="fr")say(en);};
-  document.getElementById("vRev").onclick=()=>{rev?review.delete(en):review.add(en);saveReview();renderCard();renderList();};
-  document.getElementById("vCount").textContent=`${pos+1} / ${deck.length}`;
-}
-document.getElementById("vNext").onclick=()=>{if(deck.length){pos=(pos+1)%deck.length;renderCard();}};
-document.getElementById("vPrev").onclick=()=>{if(deck.length){pos=(pos-1+deck.length)%deck.length;renderCard();}};
-function renderList(){
-  document.getElementById("vlist").innerHTML=THEMES[theme].items.map(([en,fr])=>
-    `<div class="vitem${review.has(en)?" review":""}">${playBtn(en)}<div><div class="e">${esc(en)}</div><div class="f">${esc(fr)}${review.has(en)?" · à revoir":""}</div></div></div>`).join("");
-}
-buildDeck();
+document.getElementById("resetAll").onclick=()=>{
+  if(!confirm("Remettre tous les mots à zéro ? Ta progression sera effacée."))return;
+  srs={};saveSrs();renderMots();updateVocab();
+};
 
 // ================= GRAMMAIRE =================
 document.getElementById("gram").innerHTML=GRAMMAR.map(g=>`<details><summary>${esc(g.t)}</summary><div class="body">${g.d}
@@ -644,18 +847,23 @@ function match(ans,target){
   return parts.length>0&&parts.every(p=>ok.includes(p));
 }
 document.getElementById("qNext").onclick=nextQ;
+const QNAMES={vocab:"Quiz vocabulaire",irr:"Quiz verbes irréguliers",gram:"Quiz grammaire"};
+const quizOv=document.getElementById("quizOv");
 document.querySelectorAll("#quizChips button").forEach(b=>b.onclick=()=>{
-  qMode=b.dataset.q;good=0;total=0;qScore.textContent="0 / 0";
-  document.querySelectorAll("#quizChips button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));nextQ();});
+  qMode=b.dataset.q;document.querySelectorAll("#quizChips button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));});
+document.getElementById("startQuiz").onclick=()=>{
+  good=0;total=0;qScore.textContent="0 / 0";document.getElementById("quizTitle").textContent=QNAMES[qMode];
+  openOv(quizOv);nextQ();};
+document.getElementById("quizClose").onclick=()=>closeOv(quizOv);
 
 // ================= NAVIGATION =================
-const VIEWS=["vocabulaire","grammaire","conjugaison","irreguliers","quiz"];
-let quizStarted=false;
+const VIEWS=["vocabulaire","grammaire","conjugaison","irreguliers","quiz","mots"];
 function route(){
   let h=(location.hash||"").slice(1);if(!VIEWS.includes(h))h="vocabulaire";
   VIEWS.forEach(v=>document.getElementById("v-"+v).classList.toggle("on",v===h));
   document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current",a.getAttribute("href")==="#"+h?"page":"false"));
-  if(h==="quiz"&&!quizStarted){quizStarted=true;nextQ();}
+  if(h==="mots")renderMots();
+  if(h==="vocabulaire")updateVocab();
 }
 window.addEventListener("hashchange",()=>{route();window.scrollTo({top:0});});
 route();
